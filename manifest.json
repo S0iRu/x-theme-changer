@@ -1,22 +1,39 @@
 {
   "manifest_version": 3,
-  "name": "X.com Background Changer",
+  "name": "x-theme-changer",
   "version": "1.2",
   "description": "Set a custom background image on X.com and override inline styles.",
-  "permissions": ["scripting"],
-  "host_permissions": ["https://x.com/*", "https://twitter.com/*"],
+  "permissions": [
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://x.com/*",
+    "https://twitter.com/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://x.com/*", "https://twitter.com/*"],
-      "css":["custom.css"],
-      "js": ["force-important.js"],
+      "matches": [
+        "https://x.com/*",
+        "https://twitter.com/*"
+      ],
+      "css": [
+        "custom.css"
+      ],
+      "js": [
+        "force-important.js"
+      ],
       "run_at": "document_start"
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["background.png"],
-      "matches": ["https://x.com/*", "https://twitter.com/*"]
+      "resources": [
+        "background.png"
+      ],
+      "matches": [
+        "https://x.com/*",
+        "https://twitter.com/*"
+      ]
     }
   ]
 }

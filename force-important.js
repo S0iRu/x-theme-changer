@@ -5,10 +5,11 @@
   const SCOPE = ''; // 例: 'main, [data-testid="primaryColumn"]'
 
   // ===== 置換マップ =====
+  // 背景色変換はホバー時に問題が発生するため無効化
   const BG_MAP = [
-    ['29, 155, 240', '255, 155, 240'],
-    ['239, 243, 244', '255, 155, 240'],
+    // ['29, 155, 240', '255, 155, 240'],
   ];
+  // テキスト色のみ変換
   const FG_MAP = [
     ['29, 155, 240', '255, 155, 240'],
     // ['15,20,25', '255,255,255'],
@@ -16,12 +17,12 @@
 
   // ===== ユーティリティ =====
   const MARK_ATTRS = [
-    'data-bg-el','data-bg-before','data-bg-after',
-    'data-fg-el','data-fg-before','data-fg-after'
+    'data-bg-el', 'data-bg-before', 'data-bg-after',
+    'data-fg-el', 'data-fg-before', 'data-fg-after'
   ];
   const VARS = [
-    '--bg-to-el','--bg-to-before','--bg-to-after',
-    '--fg-to-el','--fg-to-before','--fg-to-after'
+    '--bg-to-el', '--bg-to-before', '--bg-to-after',
+    '--fg-to-el', '--fg-to-before', '--fg-to-after'
   ];
   const MARKED_SELECTOR =
     '[data-bg-el="1"],[data-bg-before="1"],[data-bg-after="1"],[data-fg-el="1"],[data-fg-before="1"],[data-fg-after="1"]';
@@ -29,9 +30,9 @@
   const normRGBA = (v) => {
     if (v == null) return null;
     const s = String(v).trim();
-    let m = s.replace(/\s+/g,'').match(/^(\d{1,3}),(\d{1,3}),(\d{1,3})$/);
+    let m = s.replace(/\s+/g, '').match(/^(\d{1,3}),(\d{1,3}),(\d{1,3})$/);
     if (m) return { rgb: `${+m[1]},${+m[2]},${+m[3]}`, a: 1 };
-    m = s.replace(/\s+/g,'').match(/^rgba?\((\d{1,3}),(\d{1,3}),(\d{1,3})(?:,([0-9.]+))?\)/i);
+    m = s.replace(/\s+/g, '').match(/^rgba?\((\d{1,3}),(\d{1,3}),(\d{1,3})(?:,([0-9.]+))?\)/i);
     if (m) {
       const a = m[4] != null ? parseFloat(m[4]) : 1;
       if (a <= 0) return null;
@@ -43,7 +44,7 @@
   const near = (a, b, tol = TOL) => {
     if (!a || !b) return false;
     const A = a.split(',').map(Number), B = b.split(',').map(Number);
-    return Math.abs(A[0]-B[0])<=tol && Math.abs(A[1]-B[1])<=tol && Math.abs(A[2]-B[2])<=tol;
+    return Math.abs(A[0] - B[0]) <= tol && Math.abs(A[1] - B[1]) <= tol && Math.abs(A[2] - B[2]) <= tol;
   };
 
   const toPairs = (map) =>
@@ -231,7 +232,7 @@
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['class','style','data-theme','data-testid','aria-hidden']
+      attributeFilter: ['class', 'style', 'data-theme', 'data-testid', 'aria-hidden']
     });
 
     // ===== ホバー/フォーカス時の一時解除 =====
@@ -288,6 +289,38 @@
     root.addEventListener?.('focusin', onFocusIn, true);
     root.addEventListener?.('focusout', onFocusOut, true);
   };
+
+  // ===== 背景画像URLを動的に設定 =====
+  const setBgImage = () => {
+    const bgUrl = chrome.runtime.getURL('background.png');
+    const styleId = 'x-theme-bg-style';
+
+    // 既に存在する場合はスキップ
+    if (document.getElementById(styleId)) return;
+
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
+      html, body {
+        background: url("${bgUrl}") no-repeat center center fixed !important;
+        background-size: cover !important;
+      }
+    `;
+
+    // headまたはdocumentElementに挿入
+    const target = document.head || document.documentElement;
+    if (target) {
+      target.appendChild(style);
+    }
+  };
+
+  // DOM準備前でも実行を試みる
+  setBgImage();
+
+  // DOMContentLoadedでも再試行
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setBgImage);
+  }
 
   // ===== 起動 =====
   observeRoot(document);
