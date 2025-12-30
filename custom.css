@@ -1,0 +1,190 @@
+/* ===========================
+   背景画像設定（固定表示・全面カバー）
+=========================== */
+html, body {
+  background: url("chrome-extension://benkbooccgbcpeimgfggbfpjgfageipf/background.png")
+              no-repeat center center fixed !important;
+  background-size: cover !important;
+}
+
+/* ===========================
+   大枠の背景を半透明化
+=========================== */
+main, header, nav,
+div[role="region"],
+div[aria-label="Home timeline"],
+div[data-testid="primaryColumn"],
+div[data-testid="sidebarColumn"] {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: none !important;
+  border-radius: 12px !important;
+  border-color: #5e5e5e !important;
+}
+
+
+/* ← ここがミスりやすい：タグを固定しない */
+[data-testid="SideNav_NewTweet_Button"] {
+  background-color: rgba(0,0,0,.9) !important;
+  border-color: transparent !important;
+}
+
+/* 一部の汎用クラス対策（変わりやすいので最小限に） */
+.r-1kqtdi0 {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: none !important;
+}
+
+/* 「ポストする」ボタン内のテキスト色を強制 */
+[data-testid="SideNav_NewTweet_Button"],
+[data-testid="SideNav_NewTweet_Button"] * {
+  color: #e7e9ea !important;
+}
+
+/* アイコンが currentColor で着色される用に保険 */
+[data-testid="SideNav_NewTweet_Button"] svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+[aria-label="タイムライン: ホームタイムライン"] [data-testid="cellInnerDiv"] {
+  /* background-color: rgba(0,0,0,.75) !重要 */
+  /* border-radius: 12px !重要 */
+  color: #e7e9ea !important;
+}
+
+[data-testid="cellInnerDiv"]{
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* DM一覧の各行 */
+[aria-label="タイムライン: メッセージ"] [data-testid="conversation"] {
+  background-color: rgba(0,0,0,.75) !important;
+  /* border-radius: 12px !important; */
+}
+
+/* ホバー/選択時の濃さ調整（任意） */
+[aria-label="タイムライン: メッセージ"] [data-testid="conversation"]:hover {
+  background-color: rgba(0,0,0,.85) !important;
+}
+[aria-label="タイムライン: メッセージ"] [data-testid="conversation"][aria-selected="true"] {
+  background-color: rgba(0,0,0,.9) !important;
+}
+
+/* HoverCardの見た目調整 */
+div[data-testid="HoverCard"] {
+  /* border-radius: 12px !important; */
+  box-shadow: 0 8px 24px rgba(0,0,0,.4) !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0,0,0,.85) !important;
+}
+
+[role="dialog"][aria-modal="true"][aria-labelledby~="modal-header"] {
+  background-color: rgba(0,0,0,.85) !important;
+}
+
+.r-16y2uox,
+.r-kemksi {
+  background-color: rgba(0, 0, 0, 0.0) !important;
+  backdrop-filter: none !important;
+  color: #e7e9ea !important;
+}
+
+[aria-live="polite"] {
+  background-color: rgba(0, 0, 0, .0) !important;
+}
+
+/* [role="tablist"] {
+  background-color: rgba(0, 0, 0, 0.0) !important;
+} */
+ 
+/* .r-5zmot {
+  background-color: rgba(0, 0, 0, .0) !important;
+} */
+
+option {
+  background-color: rgba(0, 0, 0, .5) !important;
+}
+select {
+  background-color: rgba(0, 0, 0, .5) !important;
+}
+
+.r-5zmot {
+  background-color: rgba(0, 0, 0, .5) !important;
+}
+
+.r-l5o3uw{
+  background-color: rgba(255, 155, 240, 1) !important;
+}
+
+[aria-label="画像や動画を追加"]{
+  color: rgba(255, 155, 240, 1) !important;
+}
+
+[aria-label="プロフィールタイムライン"] ,
+[aria-label="タイムライン: 会話"],
+[aria-label="フッター"] {
+  background-color: rgba(0,0,0,.0) !important;
+  border-radius: 0% !important;
+}
+
+[aria-label="タイムライン: 会話"],[data-testid="Dropdown"]{
+  background-color: rgba(0,0,0,0.75) !important;
+  border-radius: 0% !important;
+}
+
+[data-testid="confirmationSheetDialog"]{ 
+  background-color: rgba(0,0,0,0.9) !important;
+}
+
+/* ===========================
+   ツイートカード
+=========================== */
+article[role="article"] {
+  background-color: rgba(0, 0, 0, 0.0) !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-radius: 12px !important;
+  border-color: #5e5e5e !important;
+}
+
+/* ===========================
+   入力欄などフォーム
+=========================== */
+div[data-testid="tweetTextarea_0"],
+div[role="textbox"],
+form {
+  background-color: rgba(0, 0, 0, 0.0) !important;
+  backdrop-filter: none !important;
+  border-radius: 12px !important;
+}
+
+[data-testid="tweetButtonInline"]{
+  background-color: rgba(255, 155, 240, 1.0) !important;
+  opacity: 1 !important;
+}
+
+[role="listbox"]{
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* [aria-label="タイムライン: フォローリクエスト"]{
+  background-color: rgba(0, 0, 0, 0.9) !important;
+} */
+
+
+/* ===========================
+   テキスト色（必要なら）
+=========================== */
+/* * {
+  color: #e7e9ea !important;
+} */
+
+/* （任意）style属性で背景色を直指定している要素への網羅対策。
+   破壊的なのでコメントアウトで提示。必要なときだけ外してください。
+*/
+/*
+[style*="background-color"] {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+*/
