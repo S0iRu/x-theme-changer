@@ -5,7 +5,7 @@
 =========================== */
 
 /* ===========================
-   大枠の背景を半透明化
+   大枠の背景を半透明化（すりガラス風）
 =========================== */
 main,
 header,
@@ -14,23 +14,27 @@ div[role="region"],
 div[aria-label="Home timeline"],
 div[data-testid="primaryColumn"],
 div[data-testid="sidebarColumn"] {
-  background-color: rgba(0, 0, 0, 0.75) !important;
-  backdrop-filter: none !important;
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
   border-radius: 12px !important;
-  border-color: #5e5e5e !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 
 /* ← ここがミスりやすい：タグを固定しない */
 [data-testid="SideNav_NewTweet_Button"] {
-  background-color: rgba(0, 0, 0, .9) !important;
-  border-color: transparent !important;
+  background-color: rgba(0, 0, 0, .6) !important;
+  backdrop-filter: blur(12px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 /* 一部の汎用クラス対策（変わりやすいので最小限に） */
 .r-1kqtdi0 {
   background-color: rgba(0, 0, 0, 0.3) !important;
-  backdrop-filter: none !important;
+  backdrop-filter: blur(12px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
 }
 
 /* 「ポストする」ボタン内のテキスト色を強制 */
@@ -53,40 +57,51 @@ div[data-testid="sidebarColumn"] {
 
 [data-testid="cellInnerDiv"] {
   background-color: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
 }
 
 /* DM一覧の各行 */
 [aria-label="タイムライン: メッセージ"] [data-testid="conversation"] {
-  background-color: rgba(0, 0, 0, .75) !important;
+  background-color: rgba(0, 0, 0, .55) !important;
+  backdrop-filter: blur(12px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
   /* border-radius: 12px !important; */
 }
 
 /* ホバー/選択時の濃さ調整（任意） */
 [aria-label="タイムライン: メッセージ"] [data-testid="conversation"]:hover {
-  background-color: rgba(0, 0, 0, .85) !important;
+  background-color: rgba(0, 0, 0, .65) !important;
 }
 
 [aria-label="タイムライン: メッセージ"] [data-testid="conversation"][aria-selected="true"] {
-  background-color: rgba(0, 0, 0, .9) !important;
+  background-color: rgba(0, 0, 0, .7) !important;
 }
 
-/* HoverCardの見た目調整 */
+/* HoverCardの見た目調整（すりガラス風） */
 div[data-testid="HoverCard"] {
-  /* border-radius: 12px !important; */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .4) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .5) !important;
   overflow: hidden !important;
-  backdrop-filter: blur(8px);
-  background-color: rgba(0, 0, 0, .85) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  background-color: rgba(0, 0, 0, .6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 [role="dialog"][aria-modal="true"][aria-labelledby~="modal-header"] {
-  background-color: rgba(0, 0, 0, .85) !important;
+  background-color: rgba(0, 0, 0, .6) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
 }
 
 .r-16y2uox,
 .r-kemksi {
   background-color: rgba(0, 0, 0, 0.0) !important;
   backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   color: #e7e9ea !important;
 }
 
@@ -103,15 +118,19 @@ div[data-testid="HoverCard"] {
 } */
 
 option {
-  background-color: rgba(0, 0, 0, .5) !important;
+  background-color: rgba(0, 0, 0, .6) !important;
 }
 
 select {
   background-color: rgba(0, 0, 0, .5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
 .r-5zmot {
   background-color: rgba(0, 0, 0, .5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
 .r-l5o3uw {
@@ -131,12 +150,18 @@ select {
 
 [aria-label="タイムライン: 会話"],
 [data-testid="Dropdown"] {
-  background-color: rgba(0, 0, 0, 0.75) !important;
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
   border-radius: 0% !important;
 }
 
 [data-testid="confirmationSheetDialog"] {
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  background-color: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
 }
 
 /* ===========================
@@ -145,9 +170,10 @@ select {
 article[role="article"] {
   background-color: rgba(0, 0, 0, 0.0) !important;
   backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
   border-radius: 12px !important;
-  border-color: #5e5e5e !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
 }
 
 /* ===========================
@@ -158,6 +184,7 @@ div[role="textbox"],
 form {
   background-color: rgba(0, 0, 0, 0.0) !important;
   backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border-radius: 12px !important;
 }
 
@@ -167,7 +194,11 @@ form {
 }
 
 [role="listbox"] {
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  background-color: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
 }
 
 /* [aria-label="タイムライン: フォローリクエスト"]{
